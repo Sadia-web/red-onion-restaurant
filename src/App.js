@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import './App.css';
+import Home from './Components/Home/Home';
+import NoMatch from './Components/NoMatch/NoMatch';
+import Signin from './Components/Signin/Signin';
+import Signup from './Components/Signup/Signup';
 
 function App() {
+
+  // const [signedInUser, setSignedInUser] = createState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Switch>
+          <Route path="/home">
+            <Home/>
+          </Route>
+          <Route exact path="/">
+            <Home/>
+          </Route>
+          <Route path="/signin">
+            <Signin/>
+          </Route>
+          <Route path="/signup">
+            <Signup/>
+          </Route>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </Router>
+      
   );
 }
 
